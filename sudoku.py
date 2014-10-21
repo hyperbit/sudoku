@@ -39,7 +39,8 @@ def loadBoard(filename):
                 board.append(map(int, row))
     except ValueError:
         print "ValueError: invalid literal for int()"
-        print "Make sure csv file is comma separated and contains only integers between 0-9!"
+        print "Make sure csv file is comma separated and contains integers"
+        print "between 0-9!"
     except IOError:
         print "IOError: no such file '%s'" % filename
 
