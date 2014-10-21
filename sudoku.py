@@ -36,10 +36,12 @@ def loadBoard(filename):
         with open(filename) as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                board.append(row)
+                board.append(map(int, row))
+    except ValueError:
+        print "ValueError: invalid literal for int()"
+        print "Make sure csv contains only integers between 0-9!"
     except IOError:
         print "IOError: no such file '%s'" % filename
-        loadBoard(raw_input('Please input a valid csv file: '))
 
     return board
 
@@ -52,13 +54,15 @@ def validateBoard(board):
     Return: True if board is valid (9x9 with elements between 0-9)
             False if board is invalid
     '''
+    if board == None:
+        return False
     if len(board) != 9:
         return False
     for i in range(9):
         if len(board[i]) != 9:
             return False
         for j in range(9):
-            if board[i][j] < 0 or board[i][j]  > 9:
+            if board[i][j] < 0 or board[i][j] > 9:
                 return False
 
 
@@ -84,10 +88,12 @@ def printBoard(board):
 
 
 def main():
-    #filename = raw_input()
-    board = loadBoard(filename)
-    #printBoard(board)
-    print validateBoard(board)
+    board = []
+    while not validateBoard(board):
+        filename = raw_input('Enter csv file to load: ')
+        board = loadBoard(filename)
+        printBoard(board)
+
 
 
 
