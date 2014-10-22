@@ -87,16 +87,39 @@ def printBoard(board):
         if (i+1) % 3 == 0:
             print '_' * (len(board)-1) * 3
 
+def solveSudoku(board):
+    '''
+    Solves the given sudoku board using the backtrack method
+    Params: board - the sudoku game board to be solved
+    Return: solution - the solved game board as a board
+    '''
+
+    return board
+
+def outputToCSV(board):
+    '''
+    Outputs the game board to a csv file
+    Params: board - the game board to output to csv
+    Return: returns nothing, but creates a csv file
+            of the board to the current directory
+    '''
+    with open('solution.csv', 'w') as solution:
+        for row in board:
+            solution.write(','.join(map(str,row))+'\n')
+
+
 
 def main():
     board = []
     while not validateBoard(board):
         filename = raw_input('Enter csv file to load: ')
         board = loadBoard(filename)
-        printBoard(board)
 
+    printBoard(board)
 
+    solution = solveSudoku(board)
 
+    outputToCSV(solution)
 
 
 if __name__ == "__main__":
