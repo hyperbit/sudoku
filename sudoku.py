@@ -87,6 +87,29 @@ def printBoard(board):
         if (i+1) % 3 == 0:
             print '_' * (len(board)-1) * 3
 
+def boardRow(board, rowIndex):
+    '''
+    Returns an array of board elements at row rowIndex
+    '''
+    return board[rowIndex]
+
+def boardCol(board, colIndex):
+    '''
+    Returns an array of board elements at column colIndex
+    '''
+    return [row[colIndex] for row in board]
+
+def boardRegion(board, i, j):
+    '''
+    Returns an array of board elements in the same region
+    as board[i][j]
+    '''
+    region = []
+    for rowIndex in range(i/3,(i/3)+3):
+        for colIndex in range(j/3,(j/3)+3):
+            region.append(board[rowIndex][colIndex])
+    return region
+
 def solveSudoku(board):
     '''
     Solves the given sudoku board using the backtrack method
