@@ -54,7 +54,7 @@ def test():
 
     assert sudoku.solveSudoku(board) == solution
     print "solveSudoku PASSED"
-
+    sudoku.printBoard(solution)
 
 
 

@@ -47,7 +47,7 @@ def loadBoard(filename):
 
     return board
 
-def isValidBoard(board):
+def isValidSudokuBoard(board):
     '''
     Checks for validity of the game board loaded from the input
     csv file. Game board must be a 9x9 element array with each
@@ -199,7 +199,7 @@ def outputToCSV(board):
 
 def main():
     board = []
-    while not isValidBoard(board):
+    while not isValidSudokuBoard(board):
         filename = raw_input('Enter csv file to load: ')
         board = loadBoard(filename)
 
