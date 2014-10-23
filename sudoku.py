@@ -105,9 +105,9 @@ def boardRegion(board, i, j):
     as board[i][j]
     '''
     region = []
-    for rowIndex in range(i/3,(i/3)+3):
-        for colIndex in range(j/3,(j/3)+3):
-            region.append(board[rowIndex][colIndex])
+    region += board[i/3*3][j/3*3:j/3*3+3]
+    region += board[i/3*3+1][j/3*3:j/3*3+3]
+    region += board[i/3*3+2][j/3*3:j/3*3+3]
     return region
 
 def solveSudoku(board):
@@ -116,6 +116,7 @@ def solveSudoku(board):
     Params: board - the sudoku game board to be solved
     Return: solution - the solved game board as a board
     '''
+
 
     return board
 
