@@ -209,7 +209,7 @@ def main():
 
     print
 
-    if solution != None:
+    if isSolution(solution):
         print "Sudoku!"
         printBoard(solution)
         outputToCSV(solution)
