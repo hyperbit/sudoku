@@ -58,4 +58,9 @@ The algorithm behind this Sudoku solver is a simple recursive backtrack strategy
 
 The board is loaded from the CSV file as a 2 Dimensional array. Cells that contain a '0' are cells that need to be assigned.
 
-The solver recursively searches cells that need to be assigned and assigns them until they are all assigned. Before the cell is assigned a value, the solver first determines if that value is valid. **A value is valid if it is an integer between 0 and 9 such that the value is not already in the same row, column, or 3x3 region.** 
+The solver recursively searches cells that need to be assigned and assigns them until they are all assigned. Before the cell is assigned a value, the solver first determines if that value is valid. **A value is valid if it is an integer between 0 and 9 such that the value is not already in the same row, column, or 3x3 region.**
+
+# Unit Testing
+The module `tests.py` contains various testing statements to assert the correctness of the different methods of the `sudoku.py` module.
+
+Running the `tests.py` requires a couple sample inputs for testing: `sample_input.csv` and `bad_input.csv`, both of which are supplied by this repository.
