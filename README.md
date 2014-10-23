@@ -59,7 +59,13 @@ The board is loaded from the CSV file as a 2 Dimensional array. Cells that conta
 
 The solver recursively searches cells that need to be assigned and assigns them until they are all assigned. Before the cell is assigned a value, the solver first determines if that value is valid. **A value is valid if it is an integer between 0 and 9 such that the value is not already in the same row, column, or 3x3 region.**
 
+# Output
+This solver will spew up a solution to its given input as a CSV file and saves it as `solution.csv`.
+
 # Unit Testing
 The module `tests.py` contains various testing statements to assert the correctness of the different methods of the `sudoku.py` module.
 
 Running the `tests.py` requires a couple sample inputs for testing: `sample_input.csv` and `bad_input.csv`, both of which are supplied by this repository.
+
+# Future
+I am currently working on turning this small program into its own web app. This repository will be updated when it is finished.
