@@ -40,8 +40,8 @@ def loadBoard(filename):
                 board.append(map(int, row))
     except ValueError:
         print "ValueError: invalid literal for int()"
-        print "Make sure csv file is comma separated and contains integers"
-        print "between 0-9!"
+        print "Make sure csv file is comma separated and"
+        print "contains integers between 0-9!"
     except IOError:
         print "IOError: no such file '%s'" % filename
 
@@ -113,7 +113,7 @@ def boardRegion(board, i, j):
 
 def isSafeToAssign(board, row, col, num):
     '''
-    Returns True if it is safe to assign num in board[row][col]
+    Returns True if it is safe to assign board[row][col] to num
     e.g. returns True if there is no other num in the same board
     row, column, or region
     '''

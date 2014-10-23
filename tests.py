@@ -25,6 +25,12 @@ solution.append([8,7,1,9,4,3,5,2,6])
 sudoku.printBoard(board)
 
 def test():
+    print "loading 'bad_input.csv'...."
+    assert sudoku.loadBoard('bad_input.csv') != board
+    print "loading 'sample_input.csv'..."
+    assert sudoku.loadBoard('sample_input.csv') == board
+    print "loadBoard PASSED"
+
     row = sudoku.boardRow(board, 0)
     assert [0,3,5,2,9,0,8,6,4] == row
     print "boardRow PASSED"
