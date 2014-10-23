@@ -26,18 +26,28 @@ sudoku.printBoard(board)
 
 def test():
     print "loading 'bad_input.csv'...."
-    assert sudoku.loadBoard('bad_input.csv') != board
+    brokenBoard = sudoku.loadBoard('bad_input.csv')
+    assert brokenBoard != board
     print "loading 'sample_input.csv'..."
     assert sudoku.loadBoard('sample_input.csv') == board
-    print "loadBoard PASSED"
+    print "loadBoard PASSED\n"
+
+    print "validating board loaded from"
+    print "'bad_input.csv'"
+    assert sudoku.isValidSudokuBoard(brokenBoard) == False
+    print "validating board loaded from"
+    print "'sample_input.csv'"
+    assert sudoku.isValidSudokuBoard(board) == True
+    print "isValidSudokuBoard PASSED\n"
+
 
     row = sudoku.boardRow(board, 0)
     assert [0,3,5,2,9,0,8,6,4] == row
-    print "boardRow PASSED"
+    print "boardRow PASSED\n"
 
     col = sudoku.boardCol(board, 0)
     assert [0,0,7,2,0,0,4,3,8] == col
-    print "boardCol PASSED"
+    print "boardCol PASSED\n"
 
     region = sudoku.boardRegion(board, 0, 0)
     assert [0,3,5,0,8,2,7,6,4] == region
@@ -47,19 +57,19 @@ def test():
     assert [7,3,9,8,0,4,0,5,2] == region
     region = sudoku.boardRegion(board, 8, 6)
     assert [0,0,9,4,1,7,5,2,6] == region
-    print "boardRegion PASSED"
+    print "boardRegion PASSED\n"
 
     assert sudoku.isSafeToAssign(board, 0, 0, 1) == True
     assert sudoku.isSafeToAssign(board, 1, 0, 7) == False
-    print "isSafeToAssign PASSED"
+    print "isSafeToAssign PASSED\n"
 
     assert sudoku.findNextUnassignedBlock(board) == (0, 0)
     board[0][0] = 1
     assert sudoku.findNextUnassignedBlock(board) == (0, 5)
-    print "findNextUnassignedBlock PASSED"
+    print "findNextUnassignedBlock PASSED\n"
 
     assert sudoku.solveSudoku(board) == solution
-    print "solveSudoku PASSED"
+    print "solveSudoku PASSED\n"
     sudoku.printBoard(solution)
 
 
