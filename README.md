@@ -4,7 +4,7 @@ sudoku
 This is a simple text-based Sudoku (http://www.sudoku.name/rules/en) solver, written in Python. This project was developed for the Insight Data Engineering Fellows Program application for the January 2015 session.
 
 # Usage
-This Sudoku solver takes in a Sudoku board in CSV format: the CSV file should be a 9x9 comma separated integer grid, with each integer between 0-9 (0 represents blanks), e.g.,
+This Sudoku solver takes in a Sudoku board in CSV format as its input: the CSV file should be a 9x9 comma separated integer grid, with each integer between 0-9 (0 represents blanks), e.g.,
 
 sample_input.csv:
 ```
@@ -17,7 +17,6 @@ sample_input.csv:
 4,0,6,5,7,1,0,0,9
 3,5,9,0,2,8,4,1,7
 8,0,0,9,0,0,5,2,6
-
 ```
 
 ```
