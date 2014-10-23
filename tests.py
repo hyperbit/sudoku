@@ -63,10 +63,10 @@ def test():
     assert sudoku.isSafeToAssign(board, 1, 0, 7) == False
     print "isSafeToAssign PASSED\n"
 
-    assert sudoku.findNextUnassignedBlock(board) == (0, 0)
+    assert sudoku.findNextUnassignedCell(board) == (0, 0)
     board[0][0] = 1
-    assert sudoku.findNextUnassignedBlock(board) == (0, 5)
-    print "findNextUnassignedBlock PASSED\n"
+    assert sudoku.findNextUnassignedCell(board) == (0, 5)
+    print "findNextUnassignedCell PASSED\n"
 
     assert sudoku.solveSudoku(board) == solution
     print "solveSudoku PASSED\n"

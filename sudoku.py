@@ -119,7 +119,7 @@ def isSafeToAssign(board, row, col, num):
     '''
     return not (num in boardRow(board, row) or num in boardCol(board, col) or num in boardRegion(board, row, col))
 
-def findNextUnassignedBlock(board):
+def findNextUnassignedCell(board):
     '''
     Returns the row and column indices of the block that has the value of 0 (unassigned)
     '''
@@ -167,7 +167,7 @@ def solveSudoku(board):
     Params: board - the sudoku game board to be solved
     Return: solution - the solved game board as a board
     '''
-    row, col = findNextUnassignedBlock(board)
+    row, col = findNextUnassignedCell(board)
 
     if row < 0 or col < 0:
         return board
