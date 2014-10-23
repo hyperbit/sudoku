@@ -78,6 +78,10 @@ def printBoard(board):
     format
     Params: board - the game board to be printed
     '''
+    if not isValidSudokuBoard(board):
+        print "Board is not a Sudoku board!"
+        return
+
     print '_' * (len(board)-1) * 3
     for i in range(len(board)):
         print '|',
@@ -226,7 +230,7 @@ def main():
 
     filename = sys.argv[1]
     board = loadBoard(filename)
-    
+
     if not isValidSudokuBoard(board):
         printBadInputMessage()
         return
