@@ -19,6 +19,7 @@
 #	http://www.gnu.org/licenses/gpl-2.0.html
 #
 import csv
+import copy
 
 filename = 'bad_input.csv'#'sample_input.csv'
 
@@ -46,7 +47,7 @@ def loadBoard(filename):
 
     return board
 
-def validateBoard(board):
+def isValidBoard(board):
     '''
     Checks for validity of the game board loaded from the input
     csv file. Game board must be a 9x9 element array with each
@@ -110,15 +111,64 @@ def boardRegion(board, i, j):
     region += board[i/3*3+2][j/3*3:j/3*3+3]
     return region
 
-def solveSudoku(board):
+def isSolution(board):
+    '''
+    Checks to see if board is a valid sudoku solution
+    '''
+    solution = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    if len(board) != 9:
+        return False
+
+    # Check rows:
+    for row in board:
+        if sorted(row) != solution:
+            return False
+
+    # Check cols:
+    for j in range(9):
+        col = boardCol(board, j)
+        if sorted(col) != solution:
+            return False
+
+    # Check regions:
+    for i in range(0, 9, 3):
+        for j in range(0, 9, 3):
+            region = boardRegion(board, i, j)
+            if sorted(region) != solution:
+                return False
+
+    # Board is solved!
+    return True
+
+def solveSudoku(board, root=True):
     '''
     Solves the given sudoku board using the backtrack method
     Params: board - the sudoku game board to be solved
     Return: solution - the solved game board as a board
     '''
+    solutions = []
+    for row in range(9):
+        for col in range(9):
+            if board[row][col] == 0:
+                for k in range(1,10):
+                    if not (k in boardRow(board, row) or k in boardCol(board, col) or k in boardRegion(board, row, col)):
+                        s = board
+                        s[row][col] = k
+                        solution = solveSudoku(board, False)
+                        if solution != None:
+                            solutions.append(solution)
 
 
-    return board
+                for solution in solutions:
+                    if isValidSolution(solution):
+                        return solution
+                return None
+
+    if isValidSolution(board):
+        return board
+
+    return None
+
 
 def outputToCSV(board):
     '''
@@ -135,7 +185,7 @@ def outputToCSV(board):
 
 def main():
     board = []
-    while not validateBoard(board):
+    while not isValidBoard(board):
         filename = raw_input('Enter csv file to load: ')
         board = loadBoard(filename)
 
