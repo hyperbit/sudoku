@@ -111,6 +111,27 @@ def boardRegion(board, i, j):
     region += board[i/3*3+2][j/3*3:j/3*3+3]
     return region
 
+def isSafeToAssign(board, row, col, num):
+    '''
+    Returns True if it is safe to assign num in board[row][col]
+    e.g. returns True if there is no other num in the same board
+    row, column, or region
+    '''
+    return not (num in boardRow(board, row) or num in boardCol(board, col) or num in boardRegion(board, row, col))
+
+def findNextUnassignedBlock(board):
+    '''
+    Returns the row and column indices of the block that has the value of 0 (unassigned)
+    '''
+    for row in range(len(board)):
+        for col in range(len(board[row])):
+            if board[row][col] == 0:
+                return row, col
+
+    # Return (-1, -1) if board is full
+    return -1, -1
+
+
 def isSolution(board):
     '''
     Checks to see if board is a valid sudoku solution
@@ -140,35 +161,28 @@ def isSolution(board):
     # Board is solved!
     return True
 
-def solveSudoku(board, root=True):
+def solveSudoku(board):
     '''
     Solves the given sudoku board using the backtrack method
     Params: board - the sudoku game board to be solved
     Return: solution - the solved game board as a board
     '''
-    solutions = []
-    for row in range(9):
-        for col in range(9):
-            if board[row][col] == 0:
-                for k in range(1,10):
-                    if not (k in boardRow(board, row) or k in boardCol(board, col) or k in boardRegion(board, row, col)):
-                        s = board
-                        s[row][col] = k
-                        solution = solveSudoku(board, False)
-                        if solution != None:
-                            solutions.append(solution)
+    row, col = findNextUnassignedBlock(board)
 
-
-                for solution in solutions:
-                    if isValidSolution(solution):
-                        return solution
-                return None
-
-    if isValidSolution(board):
+    if row < 0 or col < 0:
         return board
 
-    return None
+    for num in range(1,10):
+        if isSafeToAssign(board, row, col, num):
+            board[row][col] = num
 
+            solution = solveSudoku(board)
+            if solution != None:
+                return solution
+
+            board[row][col] = 0
+
+    return None
 
 def outputToCSV(board):
     '''
@@ -193,7 +207,14 @@ def main():
 
     solution = solveSudoku(board)
 
-    outputToCSV(solution)
+    print
+
+    if solution != None:
+        print "Sudoku!"
+        printBoard(solution)
+        outputToCSV(solution)
+    else:
+        print "Could not find a solution!"
 
 
 if __name__ == "__main__":

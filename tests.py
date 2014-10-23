@@ -32,6 +32,17 @@ def test():
     assert [0,0,9,4,1,7,5,2,6] == region
     print "boardRegion PASSED"
 
+    assert sudoku.isSafeToAssign(board, 0, 0, 1) == True
+    assert sudoku.isSafeToAssign(board, 1, 0, 7) == False
+    print "isSafeToAssign PASSED"
+
+    assert sudoku.findNextUnassignedBlock(board) == (0, 0)
+    board[0][0] = 1
+    assert sudoku.findNextUnassignedBlock(board) == (0, 5)
+    print "findNextUnassignedBlock PASSED"
+
+
+
 
 if __name__ == "__main__":
     test()
