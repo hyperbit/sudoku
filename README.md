@@ -1,7 +1,7 @@
 sudoku
 ======
 
-This is a simple text-based Sudoku (http://www.sudoku.name/rules/en) solver, written in Python. This project was developed for the Insight Data Engineering Fellows Program application for the January 2015 session.
+This is a simple text-based Sudoku (http://www.sudoku.name/rules/en) solver, written in Python 2.7.6. This project was developed for the Insight Data Engineering Fellows Program application for the January 2015 session.
 
 # Usage
 This Sudoku solver takes in a Sudoku board in CSV format as its input: the CSV file should be a 9x9 comma separated integer grid, with each integer between 0-9 (0 represents blanks), e.g.,
@@ -20,8 +20,7 @@ sample_input.csv:
 ```
 
 ```
-$ python sudoku.py
-Enter csv file to load: sample_input.csv
+$ python sudoku.py sample_input.csv
 ________________________
 | 0 3 5 | 2 9 0 | 8 6 4 |
 | 0 8 2 | 4 1 0 | 7 0 3 |
@@ -67,5 +66,5 @@ The module `tests.py` contains various testing statements to assert the correctn
 
 Running the `tests.py` requires a couple sample inputs for testing: `sample_input.csv` and `bad_input.csv`, both of which are supplied by this repository.
 
-# Future
-I am currently working on turning this small program into its own web app. This repository will be updated when it is finished.
+# Web App
+You can also play with this program [on the web](http://sudoku-solver.herokuapp.com). I built it just so I can learn how to use the [Django](https://www.djangoproject.com) framework.
