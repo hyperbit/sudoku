@@ -126,7 +126,9 @@ def isSafeToAssign(board, row, col, num):
 
 def findNextUnassignedCell(board):
     '''
-    Returns the row and column indices of the block that has the value of 0 (unassigned)
+    Returns the row and column indices of the block that has the
+    value of 0 (unassigned)
+    Return tuple (-1, -1) if all cells are already assigned
     '''
     for row in range(len(board)):
         for col in range(len(board[row])):
@@ -139,7 +141,8 @@ def findNextUnassignedCell(board):
 
 def isSolution(board):
     '''
-    Checks to see if board is a valid sudoku solution
+    Checks to see if board is a valid sudoku solution and returns True
+    Else return False
     '''
     solution = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     if len(board) != 9:
